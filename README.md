@@ -1,7 +1,7 @@
 # 🧮 Nested Shapes Viewer
 
 An interactive browser-based tool for drawing and manipulating nested geometric shapes. Designed for precision layout, rotational symmetry, and full control over shape parameters.
-
+As it is shown in the next image if two differnt shapes meets in 3 vertex then 3 is common divisor for number of vertex in both shapes.  
 ---
 
 ## 🎯 Features
