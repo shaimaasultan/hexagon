@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" sizes="192x192" href="icon-192.png">
+  <link rel="icon" href="favicon_canvas.png" type="image/png">
+
+  <title>Nested Shapes with Full Controls</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      text-align: center;
+    }
+
+    canvas {
+      border: 1px solid #000;
+      margin-top: 20px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 20px;
+
+    }
+
+    .shape-section {
+      flex: 1 1 10%;
+      border: 1px solid #ccc;
+      padding: 15px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    .shape-section h2 {
+      margin-top: 0;
+    }
+
+    .slider-group {
+      margin: 10px 0;
+      display: flex;
+      flex-direction: column;
+      align-content: stretch;
+      float: left;
+    }
+
+    label {
+      display: inline-block;
+      margin-right: auto;
+      margin-right: 10px;
+    }
+
+    input[type="number"] {
+     align-content: stretch;
+     text-align: -webkit-center;
+     background: lightgoldenrodyellow;
+    }
+
+    /* Circular slider styles */
+    .circular-slider {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      margin: 10px 30px auto;
+    }
+
+    .dial {
+      width: 60%;
+      height: 60%;
+      border-radius: 50%;
+      background: conic-gradient(#4caf50 0deg, #ccc 0deg);
+      border: 4px solid #888;
+      cursor: pointer;
+    }
+
+    .rotation-value {
+      position: absolute;
+      top: 30%;
+      left: 30%;
+      transform: translate(-50%, -50%);
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+.vertical-slider {
+  writing-mode: vertical-lr;
+  direction: rtl;
+  width: 8px;
+  height: 150px;
+  transform: rotate(180deg);
+}
+.vertical-slider-label {
+  margin: -20px -10px auto;
+  width: 8px;
+  transform: rotate(0deg);
+}
+
+.horizontal-slider {
+  display: flex;
+  direction: rtl;
+  flex-direction: column;
+  transform: rotate(0deg);
+  width: auto
+}
+
+#rotationDial1, #rotationDial2 {
+  will-change: background;
+  transition: background 0.2s ease-out;
+}
+
+.option-drp{
+    background-color: greenyellow;
+    font-size: unset;
+}
+.canvas{
+margin-inline: auto;
+}
+.horizontal-label{
+margin-right: auto;
+}
+  </style>
+</head>
+<body>
+  <h1>Draw Nested Shapes with Full Controls</h1>
+  
+  <div class="container">
+    <!-- Shape 1 Section -->
+    <div class="shape-section">
+<table><tr ><td colspan="2" align="center">
+      <h2>Shape A</h2>
+      </tr></td>
+     <tr><td >
+      <div  width="50">
+        <select class="option-drp" id="sides1" title="Select Number of Shape Sides" placeholder="Select Number of Shape Sides">
+	  <option value="1" selected>Select Number of Sides</option>
+          <option value="3">3 Sides</option>
+          <option value="4">4 Sides</option>
+          <option value="5">5 Sides</option>
+          <option value="6">6 Sides</option>
+          <option value="7">7 Sides</option>
+          <option value="8">8 Sides</option>
+          <option value="9">9 Sides</option>
+          <option value="18">18 Sides</option>
+        </select>
+      </div>
+      </td>
+     <td >
+      <div class="horizontal-slider">
+        <label for="length1">Size</label>
+<input type="number" id="length1Input" title="Size of shape" placeholder="Size of Shape" min="20" max="200" value="150" class="horizontal-slider-label">
+        <input type="range" title="length1" placeholder="length1" id="length1" min="20" max="200" value="150">
+        
+      </div>
+      </td></tr>
+      <tr><td colspan="2"><div class="horizontal-slider">
+        <label class="horizontal-label" for="positionX1">Horizontal</label>
+ 	<input type="number" class="horizontal-slider-label" id="positionX1Input" title="move shape horizontaly" placeholder="move shape horizontaly" min="0" max="700" value="250">
+        <input type="range" title="positionX1" placeholder="positionX1" id="positionX1" min="0" max="700" value="250">
+           </div></td></tr>
+      <tr><td ><div class="slider-group" style="flex-direction: row-reverse;">
+       <input type=range id="position1" class="vertical-slider" min="0" max="700" value="250" title="move shape Verticaly" placeholder="move shape Verticaly">      
+	<input type="number" id="position1Input" min="0" max="700" value="250" title="position1" placeholder="position1">
+       <label for="position1" class="vertical-slider-label" margin="auto">Vertical</label>
+	
+	</div></td><td align="left"><div class="slider-group">
+       
+        <div class="circular-slider">
+	  Rotation
+          <div class="dial" id="rotationDial1"></div>
+          <div class="rotation-value" id="rotationValue1">0°</div>
+        </div>
+      </div></td></tr>
+      </table>
+      
+      
+      
+    </div>
+
+    <!-- Shape 2 Section -->
+        <div class="shape-section">
+<table><tr ><td colspan="2" align="center">
+      <h2>Shape B</h2>
+      </tr></td>
+     <tr><td >
+      <div  width="50">
+        <select class="option-drp" id="sides2" title="Select Number of Shape Sides" placeholder="Select Number of Shape Sides" >
+	  <option value="1" selected>Select Number of Sides</option>
+          <option value="3">3 Sides</option>
+          <option value="4">4 Sides</option>
+          <option value="5">5 Sides</option>
+          <option value="6">6 Sides</option>
+          <option value="7">7 Sides</option>
+          <option value="8">8 Sides</option>
+          <option value="9">9 Sides</option>
+          <option value="10">10 Sides</option>
+        </select>
+      </div>
+      </td>
+     <td >
+      <div class="horizontal-slider">
+        <label for="length2">Size</label>
+<input type="number" id="length2Input" title="Size of shape" placeholder="Size of Shape" min="20" max="200" value="150" class="horizontal-slider-label">
+        <input type="range" title="Size of shape" placeholder="Size of Shape" id="length2" min="20" max="200" value="150">
+        
+      </div>
+      </td></tr>
+      <tr><td colspan="2"><div class="horizontal-slider">
+        <label class="horizontal-label" for="positionX2">Horizontal</label>
+ 	<input type="number" class="horizontal-slider-label" id="positionX2Input" title="move shape horizontaly" placeholder="move shape horizontaly" min="0" max="700" value="250">
+        <input type="range" title="move shape horizontaly" placeholder="move shape horizontaly" id="positionX2" min="0" max="700" value="250">
+           </div></td></tr>
+      <tr><td ><div class="slider-group" style="flex-direction: row-reverse;">
+       <input type=range id="position2" class="vertical-slider" min="0" max="700" value="250" title="move shape Verticaly" placeholder="move shape Verticaly">      
+	<input type="number" id="position2Input" min="0" max="700" value="250" title="move shape Verticaly" placeholder="move shape Verticaly">
+       <label for="position2" class="vertical-slider-label" margin="auto">Vertical</label>
+	
+	</div></td><td align="left"><div class="slider-group">
+       
+        <div class="circular-slider">
+	  Rotation
+          <div class="dial" id="rotationDial2"></div>
+          <div class="rotation-value" id="rotationValue2">0°</div>
+        </div>
+      </div></td></tr>
+      </table>
+      
+      
+      
+    </div>
+
+  </div>
+
+  <canvas id="canvas" class="canvas"  width="800" height="800"></canvas>
+
+<script>
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+
+  let rotation1Angle = 45;
+  let rotation2Angle = 45;
+
+  const controls = {
+    sides1: document.getElementById('sides1'),
+    sides2: document.getElementById('sides2'),
+    length1: document.getElementById('length1'),
+    length2: document.getElementById('length2'),
+    length1Input: document.getElementById('length1Input'),
+    length2Input: document.getElementById('length2Input'),
+    position1: document.getElementById('position1'),
+    position2: document.getElementById('position2'),
+    position1Input: document.getElementById('position1Input'),
+    position2Input: document.getElementById('position2Input'),
+    positionX1: document.getElementById('positionX1'),
+    positionX2: document.getElementById('positionX2'),
+    positionX1Input: document.getElementById('positionX1Input'),
+    positionX2Input: document.getElementById('positionX2Input')
+  };
+
+  function drawPolygon(sides, centerX, centerY, radius, color, rotationDeg) {
+    const angleStep = (2 * Math.PI) / sides;
+    const rotationRad = rotationDeg * Math.PI / 180;
+    ctx.beginPath();
+    for (let i = 0; i < sides; i++) {
+      const angle = i * angleStep + rotationRad - Math.PI / 2;
+      const x = centerX + radius * Math.cos(angle);
+      const y = centerY + radius * Math.sin(angle);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = color;
+    ctx.stroke();
+  }
+
+  function drawNestedShapes() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const s1 = +controls.sides1.value;
+    const s2 = +controls.sides2.value;
+    const r1 = +controls.length1.value;
+    const r2 = +controls.length2.value;
+    const y1 = +controls.position1.value;
+    const y2 = +controls.position2.value;
+    const x1 = +controls.positionX1.value;
+    const x2 = +controls.positionX2.value;
+
+    if (s1 >= s2) {
+      drawPolygon(s1, x1, y1, r1, 'blue', rotation1Angle);
+      drawPolygon(s2, x2, y2, r2, 'red', rotation2Angle);
+    } else {
+      drawPolygon(s2, x2, y2, r2, 'blue', rotation2Angle);
+      drawPolygon(s1, x1, y1, r1, 'red', rotation1Angle);
+    }
+  }
+
+  function sync(slider, input) {
+    slider.addEventListener('input', () => {
+      input.value = slider.value;
+      drawNestedShapes();
+    });
+    input.addEventListener('input', () => {
+      slider.value = input.value;
+      drawNestedShapes();
+    });
+  }
+
+  Object.keys(controls).forEach(key => {
+    if (!key.includes('Input')) controls[key].addEventListener('change', drawNestedShapes);
+  });
+
+  sync(controls.length1, controls.length1Input);
+  sync(controls.length2, controls.length2Input);
+  sync(controls.position1, controls.position1Input);
+  sync(controls.position2, controls.position2Input);
+  sync(controls.positionX1, controls.positionX1Input);
+  sync(controls.positionX2, controls.positionX2Input);
+
+  function initDial(dial, display, color, getAngle, setAngle) {
+    display.textContent = `${getAngle()}°`;
+    dial.style.background = `conic-gradient(${color} ${getAngle()}deg, #ccc ${getAngle()}deg)`;
+
+    dial.addEventListener('mousedown', startRotate);
+    dial.addEventListener('touchstart', startRotate, { passive: true });
+
+    function startRotate(e) {
+      e.preventDefault();
+      document.addEventListener('mousemove', rotate);
+      document.addEventListener('mouseup', stopRotate);
+      document.addEventListener('touchmove', rotate);
+      document.addEventListener('touchend', stopRotate);
+    }
+
+    function stopRotate() {
+      document.removeEventListener('mousemove', rotate);
+      document.removeEventListener('mouseup', stopRotate);
+      document.removeEventListener('touchmove', rotate);
+      document.removeEventListener('touchend', stopRotate);
+    }
+
+    function rotate(e) {
+      const rect = dial.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+      const dx = clientX - centerX;
+      const dy = clientY - centerY;
+      let angle = (Math.atan2(dy, dx) * 180 / Math.PI + 360) % 360;
+
+      setAngle(Math.round(angle));
+      display.textContent = `${getAngle()}°`;
+      dial.style.background = `conic-gradient(${color} ${getAngle()}deg, #ccc ${getAngle()}deg)`;
+      drawNestedShapes();
+    }
+  }
+
+  initDial(
+    document.getElementById('rotationDial1'),
+    document.getElementById('rotationValue1'),
+    '#4caf50',
+    () => rotation1Angle,
+    val => rotation1Angle = val
+  );
+
+  initDial(
+    document.getElementById('rotationDial2'),
+    document.getElementById('rotationValue2'),
+    '#2196f3',
+    () => rotation2Angle,
+    val => rotation2Angle = val
+  );
+
+  drawNestedShapes(); // Initial draw
+</script>
+
+</body>
+</html>
