@@ -18,7 +18,7 @@ An interactive browser-based tool for drawing and manipulating nested geometric 
 
 _Add a screenshot named `nested_shapes_viewer.png` to your `/screenshots` folder and embed it here._
 
-<img src="./screenshots/nested_shapes_viewer.png" alt="Nested Shapes Viewer Screenshot">
+<img src="Screenshot 2025-10-17 230252.png" alt="Nested Shapes Viewer Screenshot">
 🚀 Getting Started
 Clone the repo:
 
